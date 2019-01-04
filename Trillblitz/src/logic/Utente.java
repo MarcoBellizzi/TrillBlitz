@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import prove.InvioRichiesta;
+import prove.RegistrazioneUtente;
 import util.*;
 
 public class Utente implements Dao {
@@ -40,13 +41,6 @@ public class Utente implements Dao {
 		}
 	}
 
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void delete() {
 		try {
@@ -61,12 +55,8 @@ public class Utente implements Dao {
 	}
 	
 	
-	public void effettuaLogIn() {     // lo stesso del luogo
-		
-		System.out.println("LOG IN");
-		System.out.println("inserire il nome");
-		String nome = InvioRichiesta.input.nextLine();
-		
+	public void accedi(String nome, String password) {     // lo stesso del luogo
+	
 		boolean trovato = false;
 		for(Utente utente : Utente.findAll()) {
 			if(utente.getNome().equals(nome)) {
@@ -85,21 +75,28 @@ public class Utente implements Dao {
 			return;
 		}
 		
-		System.out.println("inserire la password");
-		String password = InvioRichiesta.input.nextLine();
-		
-		if(password.equals(this.password)) {
+		if(password.equals(password)) {
 			System.out.println("password corretta");
 		}
 		else {
 			System.out.println("password errata");
-			this.password = "";
+			password = "";
 		}
 		
 	}
 	
-	
-	
+	public void verifica() {
+		if(nome.equals("") || password.equals("")) {
+			System.out.println("vuoi registrarti? ");
+			String s = InvioRichiesta.input.nextLine();
+			if(s.equals("si")) {
+				RegistrazioneUtente.main(null);
+			}
+			else {
+				throw new RuntimeException();
+			}
+		}
+	}
 	
 	
 	

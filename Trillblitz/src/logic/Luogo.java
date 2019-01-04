@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import prove.AccettazioneRichiesta;
+import prove.InvioRichiesta;
+import prove.RegistrazioneUtente;
 import util.Util;
 
 public class Luogo implements Dao {
@@ -40,13 +42,6 @@ public class Luogo implements Dao {
 		}
 	}
 
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void delete() {
 		try {
@@ -61,43 +56,76 @@ public class Luogo implements Dao {
 	}
 
 
-	public void effettuaLogIn() {    // lo stesso dell'utente
-
-		System.out.println("LOG IN");
-		System.out.println("inserire il nome");
-		String nome = AccettazioneRichiesta.input.nextLine();
-
+	public void accedi(String nome, String password) {     // lo stesso dell utente
+		
 		boolean trovato = false;
-		for(Luogo utente : Luogo.findAll()) {
+		for(Utente utente : Utente.findAll()) {
 			if(utente.getNome().equals(nome)) {
 				trovato = true;
-
+				
 				this.nome = utente.getNome() ;
 				this.password = utente.getPassword();
-
+				
 				System.out.println("utente trovato");
 				break;
 			}
 		}
-
+		
 		if(!trovato) {
 			System.out.println("utente non trovato");
 			return;
 		}
-
-		System.out.println("inserire la password");
-		String password = AccettazioneRichiesta.input.nextLine();
-
-		if(password.equals(this.password)) {
+		
+		if(password.equals(password)) {
 			System.out.println("password corretta");
 		}
 		else {
 			System.out.println("password errata");
-			this.password = "";
+			password = "";
 		}
-
+		
+	}
+	
+	public void verifica() {
+		if(nome.equals("") || password.equals("")) {
+			System.out.println("vuoi registrarti? ");
+			String s = InvioRichiesta.input.nextLine();
+			if(s.equals("si")) {
+				RegistrazioneUtente.main(null);
+			}
+			else {
+				throw new RuntimeException();
+			}
+		}
 	}
 
+	public void visualizzaRichieste() {
+
+		boolean almenoUna = false;
+		for(Richiesta richiesta : Richiesta.findAll(nome)) {
+			almenoUna = true;
+			System.out.println("nuova richiesta da : " + richiesta.getCreatore());
+			System.out.println("partecipanti proposti ");
+			for(String utente : richiesta.getListaPartecipanti()) {
+				System.out.println(utente);
+			}
+
+			System.out.println("accetti?");
+			String s = AccettazioneRichiesta.input.next();
+
+			if(s.equals("si")) {
+				richiesta.accetta();    // crea l'evento
+				System.out.println("richiesta accettata");
+			}
+			else {
+				System.out.println("richiesta non accettata");
+			}
+		}
+
+		if(!almenoUna)
+			System.out.println("nessuna nuova richiesta");
+
+	}
 
 
 	public static ArrayList<Luogo> findAll() {
