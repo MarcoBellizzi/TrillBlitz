@@ -3,19 +3,19 @@ package prove;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import logic.Richiesta;
-import logic.Utente;
-import util.Util;
+import logica.Musicista;
+import logica.Richiesta;
+import util.Connessione;
 
 public class InvioRichiesta {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public static Utente utenteCorrente;
+	public static Musicista musicistaCorrente;
 	
 	public static void main(String[] args) {
 		
-		Util.initConnection();
+		Connessione.initConnection();
 		
 		System.out.println("LOG IN");
 		System.out.println("inserire il nome");
@@ -23,11 +23,11 @@ public class InvioRichiesta {
 		System.out.println("inserire la password");
 		String password = input.nextLine();
 		
-		utenteCorrente = new Utente();
+		musicistaCorrente = new Musicista();
 		
-		utenteCorrente.accedi(nome,password);
+		musicistaCorrente.accedi(nome,password);
 		
-		utenteCorrente.verifica();
+		musicistaCorrente.verifica();
 		
 		
 		System.out.println("CREAZIONE DI UNA RICHIESTA");
@@ -38,11 +38,11 @@ public class InvioRichiesta {
 		
 		if(richiesta.controlla()) {
 			System.out.println("richiesta inviata");
-			richiesta.save();  // invia la richiesta
+			richiesta.save();  
 		}
 
 		try {
-			Util.getConnection().close();
+			Connessione.getConnection().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

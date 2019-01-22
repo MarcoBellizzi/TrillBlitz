@@ -1,4 +1,4 @@
-package logic;
+package logica;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,33 +8,26 @@ import java.util.ArrayList;
 import prove.AccettazioneRichiesta;
 import prove.InvioRichiesta;
 import prove.RegistrazioneUtente;
-import util.Util;
+import util.Connessione;
 
-public class Luogo implements Dao {
+public class Locale extends Utente implements Dao {
 
-	String nome;
-	String password;
-
-	public Luogo() {
-		nome = "";
-		password = "";
+	public Locale() {
+		super();
 	}
 
-	public Luogo(String s, String p) {
-		nome = s;
-		password = p;
+	public Locale(String nome, String password, String email) {
+		super(nome,password,email);
 	}
-
-	public String getNome() { return nome; };
-	public String getPassword() { return password; };
 
 	@Override
 	public void save() {
 		try {
-			String insert = "insert into luogo values (?,?)";
-			PreparedStatement statement = Util.getConnection().prepareStatement(insert);
+			String insert = "insert into locale values (?,?,?)";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(insert);
 			statement.setString(1, nome);
 			statement.setString(2, password);
+			statement.setString(3, email);
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -45,8 +38,8 @@ public class Luogo implements Dao {
 	@Override
 	public void delete() {
 		try {
-			String delete = "delete from luogo where nome = ?";
-			PreparedStatement statement = Util.getConnection().prepareStatement(delete);
+			String delete = "delete from locale where nome = ?";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(delete);
 			statement.setString(1, nome);
 			statement.executeUpdate();
 
@@ -56,10 +49,9 @@ public class Luogo implements Dao {
 	}
 
 
-	public void accedi(String nome, String password) {     // lo stesso dell utente
-		
+	public void accedi(String nome, String password) {     
 		boolean trovato = false;
-		for(Utente utente : Utente.findAll()) {
+		for(Locale utente : Locale.findAll()) {
 			if(utente.getNome().equals(nome)) {
 				trovato = true;
 				
@@ -73,6 +65,7 @@ public class Luogo implements Dao {
 		
 		if(!trovato) {
 			System.out.println("utente non trovato");
+			this.nome = "";
 			return;
 		}
 		
@@ -99,7 +92,7 @@ public class Luogo implements Dao {
 		}
 	}
 
-	public void visualizzaRichieste() {
+	public void visualizzaRichieste() {   // da rimuovere
 
 		boolean almenoUna = false;
 		for(Richiesta richiesta : Richiesta.findAll(nome)) {
@@ -128,20 +121,21 @@ public class Luogo implements Dao {
 	}
 
 
-	public static ArrayList<Luogo> findAll() {
+	public static ArrayList<Locale> findAll() {
 
-		ArrayList<Luogo> lista = new ArrayList<Luogo>();
+		ArrayList<Locale> lista = new ArrayList<Locale>();
 
 		try {
 
-			String query = "select * from luogo" ;
-			PreparedStatement statement = Util.getConnection().prepareStatement(query);
+			String query = "select * from locale" ;
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while(result.next()) {
 				String nome = result.getString("nome");
 				String password = result.getString("password");
-				lista.add(new Luogo(nome,password));
+				String email = result.getString("email");
+				lista.add(new Locale(nome,password,email));
 			}
 
 		} catch (SQLException e) {

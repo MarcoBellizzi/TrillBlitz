@@ -1,4 +1,4 @@
-package logic;
+package logica;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,33 +9,26 @@ import prove.InvioRichiesta;
 import prove.RegistrazioneUtente;
 import util.*;
 
-public class Utente implements Dao {
+public class Musicista extends Utente implements Dao {
 
-	String nome;
-	String password;
-
-	public Utente() {
-		nome = "";
-		password = "";
+	public Musicista() {
+		super();
 	}
 	
-	public Utente(String n, String p) {
-		nome = n;
-		password = p;
+	public Musicista(String nome, String password, String email) { 
+		super(nome,password,email); 
 	}
-
-	public String getNome() { return nome; }
-	public String getPassword() { return password; }
 
 	@Override
 	public void save() {
 		try {
-			String insert = "insert into utente(nome, password) values (?,?)";
-			PreparedStatement statement = Util.getConnection().prepareStatement(insert);
+			String insert = "insert into musicista(nome, password, email) values (?,?,?)";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(insert);
 			statement.setString(1, nome);
 			statement.setString(2, password);
+			statement.setString(3, email);
 			statement.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +38,7 @@ public class Utente implements Dao {
 	public void delete() {
 		try {
 			String delete = "delete from utente where nome = ?";
-			PreparedStatement statement = Util.getConnection().prepareStatement(delete);
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(delete);
 			statement.setString(1, nome);
 			statement.executeUpdate();
 
@@ -53,28 +46,26 @@ public class Utente implements Dao {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void accedi(String nome, String password) {     // lo stesso del luogo
-	
+
+
+	public void accedi(String nome, String password) {
 		boolean trovato = false;
-		for(Utente utente : Utente.findAll()) {
+		for(Musicista utente : Musicista.findAll()) {
 			if(utente.getNome().equals(nome)) {
 				trovato = true;
-				
 				this.nome = utente.getNome() ;
 				this.password = utente.getPassword();
-				
 				System.out.println("utente trovato");
 				break;
 			}
 		}
-		
+
 		if(!trovato) {
 			System.out.println("utente non trovato");
+			this.nome = "";
 			return;
 		}
-		
+
 		if(password.equals(password)) {
 			System.out.println("password corretta");
 		}
@@ -82,9 +73,9 @@ public class Utente implements Dao {
 			System.out.println("password errata");
 			password = "";
 		}
-		
+
 	}
-	
+
 	public void verifica() {
 		if(nome.equals("") || password.equals("")) {
 			System.out.println("vuoi registrarti? ");
@@ -97,24 +88,25 @@ public class Utente implements Dao {
 			}
 		}
 	}
-	
-	
-	
-	
-	public static ArrayList<Utente> findAll() {
-		
-		ArrayList<Utente> lista = new ArrayList<Utente>();
+
+
+
+
+	public static ArrayList<Musicista> findAll() {
+
+		ArrayList<Musicista> lista = new ArrayList<Musicista>();
 
 		try {
 
-			String query = "select * from utente" ;
-			PreparedStatement statement = Util.getConnection().prepareStatement(query);
+			String query = "select * from musicista" ;
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			
+
 			while(result.next()) {
 				String nome = result.getString("nome");
 				String password = result.getString("password");
-				lista.add(new Utente(nome,password));
+				String email = result.getString("email");
+				lista.add(new Musicista(nome,password,email));
 			}
 
 		} catch (SQLException e) {
@@ -122,9 +114,9 @@ public class Utente implements Dao {
 		} 
 
 		return lista;
-		
+
 	}
-	
+
 
 }
 

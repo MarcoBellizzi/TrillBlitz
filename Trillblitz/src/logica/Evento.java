@@ -1,9 +1,9 @@
-package logic;
+package logica;
 
 
 import java.sql.*;
 
-import util.Util;
+import util.Connessione;
 
 public class Evento implements Dao {
 
@@ -20,8 +20,8 @@ public class Evento implements Dao {
 	@Override
 	public void save() {
 		try {
-			String insert = "insert into evento(codice, luogo, data) values (?,?,?)";
-			PreparedStatement statement = Util.getConnection().prepareStatement(insert);
+			String insert = "insert into evento(codice, locale, data) values (?,?,?)";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(insert);
 			statement.setInt(1, codice);
 			statement.setString(2, luogo);
 			statement.setDate(3,data);
@@ -32,17 +32,11 @@ public class Evento implements Dao {
 		}
 	}
 
-
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void delete() {
 		try {
 			String delete = "delete from evento where codice = ?";
-			PreparedStatement statement = Util.getConnection().prepareStatement(delete);
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(delete);
 			statement.setInt(1,codice);
 			statement.executeUpdate();
 
