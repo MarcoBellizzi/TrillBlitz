@@ -19,5 +19,7 @@
 <div>.  </div>
 <div> Clicca <a href=creaRichiesta.jsp?creatore=<%= visitor%> >qui</a> per creare una richiesta</div>
 
+<div> Clicca <a href=visualizzaEventi.jsp >qui</a> per visualizzare gli eventi </div> 
+
 </body>
 </html>

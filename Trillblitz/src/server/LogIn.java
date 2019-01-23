@@ -1,7 +1,6 @@
 package server;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +13,7 @@ import logica.Musicista;
 import util.Connessione;
 
 /**
- * Servlet implementation class MyServlet
+ * Servlet implementation class LogIn
  */
 @WebServlet("/LogIn")
 public class LogIn extends HttpServlet {
@@ -70,15 +69,13 @@ public class LogIn extends HttpServlet {
 				rd.forward(request, response);
 			}
 			else {
-				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
-				out.println("<div>Password Errata</div>");
+				RequestDispatcher rd = request.getRequestDispatcher("passwordSbagliata.html");
+				rd.forward(request, response);
 			}
 		}
 		else {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println("<div>Utente non registrato</div>");
+			RequestDispatcher rd = request.getRequestDispatcher("utenteNonRegistrato.html");
+			rd.forward(request, response);
 		}
 
 
