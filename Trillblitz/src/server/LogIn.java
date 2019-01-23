@@ -52,30 +52,31 @@ public class LogIn extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp?nome="+nome);
 			rd.forward(request, response);
 		}
+		else {
 
-
-		for(Locale locale : Locale.findAll()) {
-			if(locale.getNome().equals(nome)) {
-				trovato = true;
-				if(locale.getPassword().equals(password)) {
-					passwordCorretta = true;
+			for(Locale locale : Locale.findAll()) {
+				if(locale.getNome().equals(nome)) {
+					trovato = true;
+					if(locale.getPassword().equals(password)) {
+						passwordCorretta = true;
+					}
 				}
 			}
-		}
 
-		if(trovato) {
-			if(passwordCorretta) {
-				RequestDispatcher rd = request.getRequestDispatcher("homeLocale.jsp?nome="+nome);
-				rd.forward(request, response);
+			if(trovato) {
+				if(passwordCorretta) {
+					RequestDispatcher rd = request.getRequestDispatcher("homeLocale.jsp?nome="+nome);
+					rd.forward(request, response);
+				}
+				else {
+					RequestDispatcher rd = request.getRequestDispatcher("passwordSbagliata.html");
+					rd.forward(request, response);
+				}
 			}
 			else {
-				RequestDispatcher rd = request.getRequestDispatcher("passwordSbagliata.html");
+				RequestDispatcher rd = request.getRequestDispatcher("utenteNonRegistrato.html");
 				rd.forward(request, response);
 			}
-		}
-		else {
-			RequestDispatcher rd = request.getRequestDispatcher("utenteNonRegistrato.html");
-			rd.forward(request, response);
 		}
 
 

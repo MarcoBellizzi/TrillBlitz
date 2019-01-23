@@ -15,7 +15,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="librerie/servlet-api-5.5.23.jar">
+	<classpathentry kind="lib" path="librerie/servlet-api-5.5.23.jar" sourcepath="/home/rhode/Librerie/servlet-api-5.5.23.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
