@@ -71,28 +71,27 @@ public class Richiesta implements Dao {
 
 
 	public boolean controlla() {
-		boolean ok = false;
+		boolean trovato = false;
 		for(Locale locale : Locale.findAll()) {
 			if(locale.getNome().equals(this.locale)) {
-				//System.out.println("ho trovato il luogo");
-				ok = true;
+				trovato = true;
 			}
 		}
 
-		if(!ok) {
+		if(!trovato) {
 			//System.out.println("non ho trovato il luogo");
 			return false;
 		}
 
 		boolean completo = true;
 		for(String partecipante : listaPartecipanti) {
-			ok = false;
+			trovato = false;
 			for(Musicista utente : Musicista.findAll()) {
 				if(partecipante.equals(utente.getNome())) {
-					ok = true;
+					trovato = true;
 				}
 			}
-			if(!ok) {
+			if(!trovato) {
 				//System.out.println("non ho trovato l'utente " + partecipante);
 				completo = false;
 			}
@@ -109,11 +108,11 @@ public class Richiesta implements Dao {
 
 	public void accetta() {
 
-		Evento evento = new Evento(codice,locale,data);
-		evento.save();
-
 		try {
-
+			
+			Evento evento = new Evento(codice,locale,data);
+			evento.save();
+			
 			String query = "select * from richiede where richiesta = " + codice;
 			PreparedStatement statement = Connessione.getConnection().prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -127,12 +126,26 @@ public class Richiesta implements Dao {
 				statement.setString(1, utente);
 				statement.setInt(2, codice);
 				statement.executeUpdate();
+				
+				insert = "insert into notifiche(utente,notifica) values(?,?)";
+				statement = Connessione.getConnection().prepareStatement(insert);
+				statement.setString(1, utente);
+				statement.setString(2, creatore + " ti ha aggiunto ad un evento. L'evento si tiene presso " + locale + 
+						" in data " + data );
+				statement.executeUpdate();
+				
 			}
 
 			String insert = "insert into partecipa(utente,evento) values(?,?)";
 			statement = Connessione.getConnection().prepareStatement(insert);
 			statement.setString(1, creatore);
 			statement.setInt(2, codice);
+			statement.executeUpdate();
+			
+			insert = "insert into notifiche(utente,notifica) values(?,?)";
+			statement = Connessione.getConnection().prepareStatement(insert);
+			statement.setString(1, creatore);
+			statement.setString(2, "la tua richiesta presso " + locale + " è stata accettata");
 			statement.executeUpdate();
 
 			String delete = "delete from richiede where richiesta = " + codice;
@@ -168,8 +181,6 @@ public class Richiesta implements Dao {
 			while(result.next()) {
 				codice = result.getInt("codice");
 			}
-
-			System.out.println(codice);
 
 			for(String partecipante : listaPartecipanti) {
 				insert = "insert into richiede(utente,richiesta) values(?,?)";
