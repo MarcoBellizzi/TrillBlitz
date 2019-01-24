@@ -16,9 +16,11 @@
 	
 	<% for(Richiesta richiesta : Richiesta.findAll(nome)) { 
 		String creatore = richiesta.getCreatore();		
-		String codice = "" + richiesta.getCodice();      %>
+		String codice = "" + richiesta.getCodice();
+		String data = "" + richiesta.getData();     %>
 		
 		<div>Hai un nuova nuova richiesta da <%= creatore %> </div>
+		<div>Data : <%= data %></div>
 		
 		<% for(String partecipante : richiesta.getListaPartecipanti()) {  %>
 				<div>Partecipante: <%= partecipante %> </div>

@@ -4,10 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import prove.AccettazioneRichiesta;
-import prove.InvioRichiesta;
-import prove.RegistrazioneUtente;
 import util.Connessione;
 
 public class Locale extends Utente implements Dao {
@@ -79,47 +75,6 @@ public class Locale extends Utente implements Dao {
 		
 	}
 	
-	public void verifica() {
-		if(nome.equals("") || password.equals("")) {
-			System.out.println("vuoi registrarti? ");
-			String s = InvioRichiesta.input.nextLine();
-			if(s.equals("si")) {
-				RegistrazioneUtente.main(null);
-			}
-			else {
-				throw new RuntimeException();
-			}
-		}
-	}
-
-	public void visualizzaRichieste() {   // da rimuovere
-
-		boolean almenoUna = false;
-		for(Richiesta richiesta : Richiesta.findAll(nome)) {
-			almenoUna = true;
-			System.out.println("nuova richiesta da : " + richiesta.getCreatore());
-			System.out.println("partecipanti proposti ");
-			for(String utente : richiesta.getListaPartecipanti()) {
-				System.out.println(utente);
-			}
-
-			System.out.println("accetti?");
-			String s = AccettazioneRichiesta.input.next();
-
-			if(s.equals("si")) {
-				richiesta.accetta();    // crea l'evento
-				System.out.println("richiesta accettata");
-			}
-			else {
-				System.out.println("richiesta non accettata");
-			}
-		}
-
-		if(!almenoUna)
-			System.out.println("nessuna nuova richiesta");
-
-	}
-
 
 	public static ArrayList<Locale> findAll() {
 

@@ -3,6 +3,8 @@ package server;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -37,6 +39,18 @@ public class CreaRichiesta extends HttpServlet {
 		
 		String creatore = request.getParameter("creatore");
 		String locale = request.getParameter("locale");
+		Date data = new Date(0);
+		
+		try {
+			
+			String dataS = request.getParameter("data");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date datasql = sdf.parse(dataS);
+			data = new Date(datasql.getTime());
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		ArrayList<String> partecipanti = new ArrayList<String>();
 		for(int i=1; i<=5; i++) {
@@ -45,7 +59,7 @@ public class CreaRichiesta extends HttpServlet {
 			partecipanti.add(partecipante);
 		}
 		
-		Richiesta richiesta = new Richiesta(3,creatore,locale,new Date(0),partecipanti);
+		Richiesta richiesta = new Richiesta(creatore,locale,data,partecipanti);
 		if(richiesta.controlla()) {
 			richiesta.save();
 			out.println("richiesta è stata controllata e inviata");

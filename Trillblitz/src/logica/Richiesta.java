@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-
-import prove.InvioRichiesta;
 import util.Connessione;
 
 public class Richiesta implements Dao {
@@ -20,15 +17,15 @@ public class Richiesta implements Dao {
 
 	public Richiesta() {};
 
-	public Richiesta(int codice, String creatore, String locale, Date data, ArrayList<String> listaPartecipanti) {
-		this.codice = codice;
+	public Richiesta(String creatore, String locale, Date data, ArrayList<String> listaPartecipanti) {
 		this.creatore = creatore;
 		this.locale = locale;
 		this.data = data;
 		this.listaPartecipanti = listaPartecipanti;
 	}
-
-	public void init(String creatore, String locale, Date data, ArrayList<String> listaPartecipanti) {
+	
+	public Richiesta(int codice, String creatore, String locale, Date data, ArrayList<String> listaPartecipanti) {
+		this.codice = codice;
 		this.creatore = creatore;
 		this.locale = locale;
 		this.data = data;
@@ -40,35 +37,6 @@ public class Richiesta implements Dao {
 	public String getLuogo() { return locale; };
 	public Date getData() { return data; };
 	public ArrayList<String> getListaPartecipanti() { return listaPartecipanti; };
-
-	public void compila() {
-
-		System.out.println("inserire il luogo in cui fare l'evento");
-		String luogo = InvioRichiesta.input.nextLine();
-
-		System.out.println("inserire la data nel formato   int anno / int(1/12) mese / int giorno");
-		int anno = InvioRichiesta.input.nextInt();
-		int mese = InvioRichiesta.input.nextInt()-1;
-		int giorno = InvioRichiesta.input.nextInt();
-
-		Calendar calendario = Calendar.getInstance();
-		calendario.set(anno,mese,giorno);
-		Date data = new Date(calendario.getTimeInMillis());
-
-		System.out.println("inserire il numero dei partecipanti");
-		int n = InvioRichiesta.input.nextInt();
-
-		ArrayList<String> listaPartecipanti = new ArrayList<String>();
-		String s = InvioRichiesta.input.nextLine();
-		for(int i=0; i<n; i++) {
-			System.out.println("inserire il nome del partecipante " + (i+1) );
-			s = InvioRichiesta.input.nextLine();
-			listaPartecipanti.add(s);
-		}
-		init(InvioRichiesta.musicistaCorrente.getNome(),luogo,data,listaPartecipanti);
-
-	}
-
 
 	public boolean controlla() {
 		boolean trovato = false;
@@ -103,9 +71,7 @@ public class Richiesta implements Dao {
 		return false;
 	}
 
-
-
-
+	
 	public void accetta() {
 
 		try {
@@ -130,8 +96,7 @@ public class Richiesta implements Dao {
 				insert = "insert into notifiche(utente,notifica) values(?,?)";
 				statement = Connessione.getConnection().prepareStatement(insert);
 				statement.setString(1, utente);
-				statement.setString(2, creatore + " ti ha aggiunto ad un evento. L'evento si tiene presso " + locale + 
-						" in data " + data );
+				statement.setString(2, "sei stato aggiunto da " + creatore + " ad un nouvo evento presso il locale " + locale);
 				statement.executeUpdate();
 				
 			}

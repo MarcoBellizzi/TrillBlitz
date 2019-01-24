@@ -4,9 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import prove.InvioRichiesta;
-import prove.RegistrazioneUtente;
 import util.*;
 
 public class Musicista extends Utente implements Dao {
@@ -46,50 +43,6 @@ public class Musicista extends Utente implements Dao {
 			e.printStackTrace();
 		}
 	}
-
-
-	public void accedi(String nome, String password) {
-		boolean trovato = false;
-		for(Musicista utente : Musicista.findAll()) {
-			if(utente.getNome().equals(nome)) {
-				trovato = true;
-				this.nome = utente.getNome() ;
-				this.password = utente.getPassword();
-				System.out.println("utente trovato");
-				break;
-			}
-		}
-
-		if(!trovato) {
-			System.out.println("utente non trovato");
-			this.nome = "";
-			return;
-		}
-
-		if(password.equals(password)) {
-			System.out.println("password corretta");
-		}
-		else {
-			System.out.println("password errata");
-			password = "";
-		}
-
-	}
-
-	public void verifica() {
-		if(nome.equals("") || password.equals("")) {
-			System.out.println("vuoi registrarti? ");
-			String s = InvioRichiesta.input.nextLine();
-			if(s.equals("si")) {
-				RegistrazioneUtente.main(null);
-			}
-			else {
-				throw new RuntimeException();
-			}
-		}
-	}
-
-
 
 
 	public static ArrayList<Musicista> findAll() {

@@ -8,20 +8,25 @@
 <link rel="stylesheet" href="css/common.css" type="text/css" />
 </head>
 <body>
-<div id="header">Home Page</div>
+<div id="header">Notifiche</div>
 
-<% String utente = request.getParameter("utente");
-	if (utente == null) utente = "World";   
+<% String utente = request.getParameter("utente");  %>
+
+	ciao <%= utente %> ecco le tue notifiche
 	
-	String select = "select * from notifiche where utente = '" + utente + "'";
+<%	String select = "select * from notifiche where utente = '" + utente + "'";
 	PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
 	ResultSet result = statement.executeQuery();
 
 	while(result.next()) {
-		String messaggio = result.getString("notifica");    %>
+		String messaggio = result.getString("notifica");  %>
 		
 		<div>Hai una nuova notifica :</div>
-		<div><%= messaggio %></div>  	
+		<div><%= messaggio %></div>
+	
+		<form method=post action="elimina?utente=<%= utente %>&notifica=<%= messaggio %>">
+			<input type=submit value=ok>
+		</form>
 	
 	<% } %>
 
