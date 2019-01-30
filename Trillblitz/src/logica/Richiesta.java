@@ -118,6 +118,20 @@ public class Richiesta implements Dao {
 			delete = "delete from richiesta where codice = " + codice;
 			statement = Connessione.getConnection().prepareStatement(delete);
 			statement.executeUpdate();
+			
+			String select = "select * from partecipa where evento = " + codice;
+			statement = Connessione.getConnection().prepareStatement(select);
+			result = statement.executeQuery();
+			while(result.next()) {
+				String utente = result.getString("utente");
+				for(String follower : Musicista.getFollower(utente)) {
+					insert = "insert into notifiche(utente,notifica) values(?,?)";
+					statement = Connessione.getConnection().prepareStatement(insert);
+					statement.setString(1, follower);
+					statement.setString(2, "il tuo amico "+utente+" partecipa ad un nuovo evento presso "+locale+" in data"+data+" .");
+					statement.executeUpdate();
+				}
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

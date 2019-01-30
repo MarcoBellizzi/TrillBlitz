@@ -69,8 +69,25 @@ public class Musicista extends Utente implements Dao {
 		return lista;
 
 	}
+	
+	public static ArrayList<String> getFollower(String nome) {
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		try {
+			String select = "select * from segue where utente2 = '" + nome + "'";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				lista.add(result.getString("utente1"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
 
-	public static int getFollower(String nome) {
+	public static int getNumberFollower(String nome) {
 		int numero = 0;
 		
 		try {

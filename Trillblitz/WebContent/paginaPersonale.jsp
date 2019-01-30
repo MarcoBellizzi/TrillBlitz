@@ -13,7 +13,7 @@
 	String visitatore = request.getParameter("visitatore");
 	String nome = request.getParameter("nome");
 	String tipo = request.getParameter("tipo");
-	int follower = Musicista.getFollower(nome);
+	int follower = Musicista.getNumberFollower(nome);
 %>
 
 	<h2>Nome : <%= nome %></h2>

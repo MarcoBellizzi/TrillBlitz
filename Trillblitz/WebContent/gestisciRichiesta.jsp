@@ -17,7 +17,7 @@
 			richiesta.accetta();   %>
 			
 			La richiesta è stata accettata, ed è stato creto l'evento
-			<div> Clicca <a href=home.jsp?nome=<%= nome %>>qui</a> per tornare alla home </div>
+			<div> Clicca <a href=homeLocale.jsp?nome=<%= nome %>>qui</a> per tornare alla home </div>
 			
 	<%	}
 		else {  
