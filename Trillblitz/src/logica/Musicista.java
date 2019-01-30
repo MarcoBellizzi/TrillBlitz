@@ -70,6 +70,24 @@ public class Musicista extends Utente implements Dao {
 
 	}
 
+	public static int getFollower(String nome) {
+		int numero = 0;
+		
+		try {
+			String select = "select count(*) from segue where utente2 ='" + nome + "'";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				numero = result.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return numero;
+	}
 
 }
 

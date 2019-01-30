@@ -28,7 +28,7 @@
 		
 		Accetti?
 		
-		<form method=post action=gestisciRichiesta.jsp?codice=<%= codice %> >
+		<form method=post action="gestisciRichiesta.jsp?nome=<%= nome %>&codice=<%= codice %>" >
 			<select name=scelta>
 				<option>Si</option>
 				<option>No</option>

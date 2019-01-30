@@ -12,7 +12,7 @@
 
 <% String utente = request.getParameter("utente");  %>
 
-	ciao <%= utente %> ecco le tue notifiche
+	<div> Ciao <%= utente %> ecco le tue notifiche </div>
 	
 <%	String select = "select * from notifiche where utente = '" + utente + "'";
 	PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
@@ -30,7 +30,7 @@
 	
 	<% } %>
 
-
+	Clicca <a href=home.jsp?nome=<%= utente %>>qui</a> per tornare alla home page
 
 
 

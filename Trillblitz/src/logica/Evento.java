@@ -12,6 +12,8 @@ public class Evento implements Dao {
 	String locale;
 	Date data;
 
+	public Evento() {};
+	
 	public Evento(int codice, String luogo, Date data) {
 		this.codice = codice;
 		this.locale = luogo;
@@ -72,6 +74,30 @@ public class Evento implements Dao {
 		}
 
 		return lista;
+	}
+	
+	public static Evento find(int codice) {
+
+		Evento evento = new Evento();
+		
+		try {
+			String select = "select * from evento where codice =" + codice; 
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				int codice2 = result.getInt("codice");
+				String locale = result.getString("locale");
+				Date data = result.getDate("data");
+				evento = new Evento(codice2,locale,data);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return evento;
 	}
 
 	public ArrayList<String> getPartecipanti() {

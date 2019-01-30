@@ -21,7 +21,8 @@
 
 	<form method="post" action=creaRichiesta?creatore=<%=creatore%>>
 		<div>
-			<label>Locale</label> <select name="locale">
+			<label>Locale</label> 
+			<select name="locale">
 				<%
 					String nome;
 					for (Locale locale : Locale.findAll()) {
@@ -36,7 +37,7 @@
 			</select>
 
 		</div>
-		<label>Data</label> <input type=date name=data />
+		<label>Data</label> <input type="date" name=data />
 		<div>
 			<label>Partecipante 1</label> <input name="partecipante1" />
 		</div>

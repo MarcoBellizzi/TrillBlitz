@@ -38,16 +38,18 @@ public class Richiesta implements Dao {
 	public Date getData() { return data; };
 	public ArrayList<String> getListaPartecipanti() { return listaPartecipanti; };
 
+	public static ArrayList<String> errati;	
+	
 	public boolean controlla() {
+		errati = new ArrayList<String>();
+		
 		boolean trovato = false;
 		for(Locale locale : Locale.findAll()) {
 			if(locale.getNome().equals(this.locale)) {
 				trovato = true;
 			}
 		}
-
 		if(!trovato) {
-			//System.out.println("non ho trovato il luogo");
 			return false;
 		}
 
@@ -60,15 +62,11 @@ public class Richiesta implements Dao {
 				}
 			}
 			if(!trovato) {
-				//System.out.println("non ho trovato l'utente " + partecipante);
+				errati.add(partecipante);
 				completo = false;
 			}
 		}
-		if(completo) {
-			//System.out.println("ho trovato tutti i partecipanti");
-			return true;
-		}
-		return false;
+		return completo;
 	}
 
 	

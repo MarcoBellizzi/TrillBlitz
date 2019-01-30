@@ -9,6 +9,7 @@
 <body>
 	<% String scelta = request.getParameter("scelta"); 
 		int codice = Integer.parseInt(request.getParameter("codice"));		
+		String nome = request.getParameter("nome");
 		
 		Richiesta richiesta = Richiesta.find(codice);
 		
@@ -16,6 +17,7 @@
 			richiesta.accetta();   %>
 			
 			La richiesta è stata accettata, ed è stato creto l'evento
+			<div> Clicca <a href=home.jsp?nome=<%= nome %>>qui</a> per tornare alla home </div>
 			
 	<%	}
 		else {  

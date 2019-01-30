@@ -21,7 +21,7 @@ for(Evento evento : Evento.findAll()) {
 	
 	<div>.</div>
 	<div> Nuovo evento </div>
-	Locale : <%= locale %>     
+	<div> Locale : <%= locale %> </div>
 	<div> data : <%= data %> </div>
 	
 	<% for(String partecipante : evento.getPartecipanti())  { %>

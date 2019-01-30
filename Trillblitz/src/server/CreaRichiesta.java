@@ -62,12 +62,17 @@ public class CreaRichiesta extends HttpServlet {
 		Richiesta richiesta = new Richiesta(creatore,locale,data,partecipanti);
 		if(richiesta.controlla()) {
 			richiesta.save();
-			out.println("richiesta è stata controllata e inviata");
+			out.println("la richiesta è stata controllata e inviata");
+			out.println("<div> Clicca <a href=home.jsp?nome="+creatore+">qui</a> per tornare alla home</div>");
+			
 		}
 		else {
-			out.println("la richiesta contiene dei dati errati");
+			for(String errato : Richiesta.errati) {
+				out.println("<div> il musicista "+errato+" non è presente nel sistema <div>");
+			}
+			
 		}
-		 
+		
 	}
 
 	/**
