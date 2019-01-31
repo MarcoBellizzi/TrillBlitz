@@ -19,5 +19,8 @@
 <div>.  </div>
 <div>. </div>
 Clicca <a href=visualizzaRichieste.jsp?nome=<%= visitor %>>qui</a> per visualizzare le tue richieste
+<div>.  </div>
+<div>.  </div>
+<div>Clicca <a href=logIn.html >qui</a> per tornare al log in </div>
 </body>
 </html>

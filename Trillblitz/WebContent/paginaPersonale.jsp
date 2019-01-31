@@ -19,6 +19,7 @@
 	<h2>Nome : <%= nome %></h2>
 	<h3>Tipo : <%= tipo %></h3>
 	<h3>Follower : <%= follower %> </h3>
+	
 	<a href="segui?utente1=<%= visitatore %>&utente2=<%= nome %>">segui</a>
 	<h3>Eventi in cui ha partecipato : </h3>
 	
