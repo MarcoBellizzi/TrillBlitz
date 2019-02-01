@@ -23,6 +23,7 @@
 		else {  
 			richiesta.delete();    %>
 			La richiesta è stata rifiutata e cancellata
+			<div> Clicca <a href=homeLocale.jsp?nome=<%= nome %>>qui</a> per tornare alla home </div>
 	<% 	}    %>	
 	
 	

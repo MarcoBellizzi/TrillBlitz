@@ -186,6 +186,12 @@ public class Richiesta implements Dao {
 			delete = "delete from richiede where richiesta = " + codice;
 			statement = Connessione.getConnection().prepareStatement(delete);
 			statement.executeUpdate();
+			
+			String insert = "insert into notifiche(utente,notifica) values(?,?)";
+			statement = Connessione.getConnection().prepareStatement(insert);
+			statement.setString(1, creatore);
+			statement.setString(2, "la tua richiesta presso " + locale + " è stata rifiutata");
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
