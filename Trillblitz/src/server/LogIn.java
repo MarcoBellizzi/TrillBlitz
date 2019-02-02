@@ -49,7 +49,7 @@ public class LogIn extends HttpServlet {
 		}
 
 		if(trovato & passwordCorretta) {
-			RequestDispatcher rd = request.getRequestDispatcher("home.jsp?nome="+nome);
+			RequestDispatcher rd = request.getRequestDispatcher("home.jsp?tipo=musicista&nome="+nome);
 			rd.forward(request, response);
 		}
 		else {
@@ -65,7 +65,7 @@ public class LogIn extends HttpServlet {
 
 			if(trovato) {
 				if(passwordCorretta) {
-					RequestDispatcher rd = request.getRequestDispatcher("homeLocale.jsp?nome="+nome);
+					RequestDispatcher rd = request.getRequestDispatcher("home.jsp?tipo=locale&nome="+nome);
 					rd.forward(request, response);
 				}
 				else {

@@ -34,6 +34,7 @@ public class EliminaNotifica extends HttpServlet {
 		// TODO Auto-generated method stub
 		String utente = request.getParameter("utente");
 		String notifica = request.getParameter("notifica");
+		String tipo = request.getParameter("tipo");
 		
 		try {
 			String delete = "delete from notifiche where utente = '" + utente + "' and notifica = '" + notifica + "';";
@@ -43,7 +44,7 @@ public class EliminaNotifica extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("visualizzaNotifiche.jsp?utente="+utente);  //aggiungere se la notifica viene da un locale
+		RequestDispatcher rd = request.getRequestDispatcher("visualizzaNotifiche.jsp?nome="+utente+"&tipo="+tipo);  //aggiungere se la notifica viene da un locale
 		rd.forward(request, response);
 
 	}

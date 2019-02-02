@@ -1,12 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="logica.*"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Registrazione</title>
 <link rel="stylesheet" href="css/common.css" type="text/css" />
+<link rel="stylesheet" href="css/HomePage.css" type="text/css" />
 </head>
 <body>
-	<div id="header">Registrazione</div>
+
+	<div class="column middle">
+			<div id="header">Registrazione</div>
 	
 	<form action="registrati">
 		<div>
@@ -40,5 +45,12 @@
 			<input type="submit" value="registrati" />
 		</div>
 	</form>
+				
+				
+				
+</div>
+
+
+
 </body>
 </html>

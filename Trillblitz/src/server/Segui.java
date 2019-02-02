@@ -41,6 +41,7 @@ public class Segui extends HttpServlet {
 
 			String utente1 = request.getParameter("utente1");
 			String utente2 = request.getParameter("utente2");
+			String tipo = request.getParameter("tipo");
 
 			if(!utente1.equals(utente2)) {
 
@@ -73,7 +74,7 @@ public class Segui extends HttpServlet {
 			else {
 				out.println("<div> Non puoi seguire te stesso </div>");
 			}
-			out.println("Clicca <a href=home.jsp?nome="+utente1+">qui</a> per tornare alla home page");
+			out.println("Clicca <a href=home.jsp?nome="+utente1+"&tipo="+tipo+" >qui</a> per tornare alla home page");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

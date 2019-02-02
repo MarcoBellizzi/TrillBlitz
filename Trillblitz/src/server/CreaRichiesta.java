@@ -37,7 +37,7 @@ public class CreaRichiesta extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		String creatore = request.getParameter("creatore");
+		String creatore = request.getParameter("nome");
 		String locale = request.getParameter("locale");
 		Date data = new Date(0);
 		
@@ -63,7 +63,7 @@ public class CreaRichiesta extends HttpServlet {
 		if(richiesta.controlla()) {
 			richiesta.save();
 			out.println("la richiesta è stata controllata e inviata");
-			out.println("<div> Clicca <a href=home.jsp?nome="+creatore+">qui</a> per tornare alla home</div>");
+			out.println("<div> Clicca <a href=home.jsp?tipo=musicista&nome="+creatore+" >qui</a> per tornare alla home</div>");
 			
 		}
 		else {

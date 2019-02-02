@@ -57,14 +57,14 @@ public class Registrazione extends HttpServlet {
 				case("Musicista"): {
 					Musicista nuovo = new Musicista(nome,password,email);
 					nuovo.save();
-					RequestDispatcher rd = request.getRequestDispatcher("home.jsp?nome="+nome);   //pagina di benvenuto
+					RequestDispatcher rd = request.getRequestDispatcher("home.jsp?tipo=musicista&nome="+nome);  
 					rd.forward(request, response);
 					break;
 				}
 				case("Locale"): {
 					Locale locale = new Locale(nome,password,email);
 					locale.save();
-					RequestDispatcher rd = request.getRequestDispatcher("homeLocale.jsp?nome="+nome);
+					RequestDispatcher rd = request.getRequestDispatcher("home.jsp?tipo=locale&nome="+nome);
 					rd.forward(request, response);
 					break;
 				}
