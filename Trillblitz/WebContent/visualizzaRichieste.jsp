@@ -20,7 +20,7 @@
 		<nav>
 			<ul id="left">
 				<li>
-					<form method=post action="paginaPersonale.jsp?nome=<%= nome %>&tipo=musicista">
+					<form method=post action="paginaPersonale.jsp?nome=<%= nome %>&tipo=<%= tipo%>&tipoVisitato=musicista">
 					<label>Cerca </label> 
 						<select name="visitato">
 						<%
@@ -64,7 +64,7 @@
 				<li><a href="visualizzaNotifiche.jsp?nome=<%=nome%>&tipo=<%= tipo %>"><img
 						src="immagini/notifics.png"></a></li>
 				<li><a
-					href="paginaPersonale.jsp?visitato=<%=nome%>&nome=<%=nome%>&tipo=<%= tipo %>"><img
+					href="paginaPersonale.jsp?visitato=<%=nome%>&nome=<%=nome%>&tipo=<%= tipo %>&tipoVisitato=<%= tipo %>"><img
 						src="immagini/profile.png"></a></li>
 				<li><a href=logIn.html><img src="immagini/settings.png"></a></li>
 			</ul>
@@ -73,7 +73,7 @@
 
 
 	<div class="column middle">
-		<div id=header >Pagina per Visualizzare le richieste</div>
+		<h1 >Pagina per Visualizzare le richieste</h1>
 		Ciao <%= nome %> hai le seguenti richieste :
 	
 	<% for(Richiesta richiesta : Richiesta.findAll(nome)) { 
@@ -95,7 +95,7 @@
 				<option>Si</option>
 				<option>No</option>
 			</select>
-			<input type="submit" value="gestisci" />
+			<input type="submit" value="conferma" />
 		</form>
 		
 	<% 	}	%>

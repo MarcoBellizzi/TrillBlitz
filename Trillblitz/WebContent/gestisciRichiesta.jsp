@@ -8,14 +8,8 @@
 </head>
 <body>
 
-
-
-
-
-
-
-
-	<% String scelta = request.getParameter("scelta"); 
+	<% 
+		String scelta = request.getParameter("scelta"); 
 		int codice = Integer.parseInt(request.getParameter("codice"));		
 		String nome = request.getParameter("nome");
 		

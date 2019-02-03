@@ -22,7 +22,7 @@
 		<nav>
 			<ul id="left">
 				<li>
-					<form method=post action="paginaPersonale.jsp?nome=<%= nome %>&tipo=<%= tipo %>">
+					<form method=post action="paginaPersonale.jsp?nome=<%= nome %>&tipo=<%= tipo %>&tipoVisitato=musicista">
 					<label>Cerca </label> 
 						<select name="visitato">
 						<%
@@ -66,7 +66,7 @@
 				<li><a href="visualizzaNotifiche.jsp?nome=<%=nome%>&tipo=<%= tipo %>"><img
 						src="immagini/notifics.png"></a></li>
 				<li><a
-					href="paginaPersonale.jsp?visitato=<%=nome%>&nome=<%=nome%>&tipo=<%= tipo %>"><img
+					href="paginaPersonale.jsp?visitato=<%=nome%>&nome=<%=nome%>&tipo=<%= tipo %>&tipoVisitato=<%= tipo %>"><img
 						src="immagini/profile.png"></a></li>
 				<li><a href=logIn.html><img src="immagini/settings.png"></a></li>
 			</ul>
