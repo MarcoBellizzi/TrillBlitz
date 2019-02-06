@@ -13,7 +13,7 @@ public class Connessione {
 		try {
 			Driver d = new org.postgresql.Driver();
 			DriverManager.registerDriver(d);
-		//	connection = DriverManager.getConnection("jdbc:postgresql://192.168.1.135:5432/trillblitz","rhode","rhode");
+		//	connection = DriverManager.getConnection("jdbc:postgresql://192.168.43.240:5432/trillblitz","rhode","rhode");
 			connection = DriverManager.getConnection("jdbc:postgresql://localhost/trillblitz","rhode","rhode");
 		} catch (SQLException e) {
 			e.printStackTrace();
