@@ -76,14 +76,6 @@
 		<div class="column middle">
 			<div id=header> Benvenuto nella tua Home Page <%= nome %> </div>
 			
-			
-			<form action=mostra >
-			<label>Data</label>
-			<input type="date" name=data />
-			<input type="submit" value="mostra eventi" />
-			</form>
-			
-			
 		</div>
 	</div>
 
