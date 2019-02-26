@@ -29,7 +29,7 @@
 	<header>
 		<div class="search">
 			<form class="search-box" method=post
-				action="paginaPersonale.jsp?nome=<%=nome%>&tipo=<%=tipo%>&tipoVisitato=musicista">
+				action="paginaPersonale.jsp?nome=<%=nome%>&tipo=<%=tipo%>">
 				<input class="search-txt" type="text" placeholder="Search"
 					aria-label="Search" name=visitato>
 				<button class="search-button" type="submit">
@@ -39,8 +39,7 @@
 		</div>
 
 		<div class="logo">
-			<a href="home.jsp?nome=<%=nome%>&tipo=<%=tipo%>"><img
-				width="128" height="64" id="logo" src="immagini/Logo.png" /></a>
+			<a href="home.jsp?nome=<%=nome%>&tipo=<%=tipo%>"><img width="128" height="64" id="logo" src="immagini/Logo.png" /></a>
 		</div>
 
 		<nav>

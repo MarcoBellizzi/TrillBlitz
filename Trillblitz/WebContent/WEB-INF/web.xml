@@ -40,15 +40,7 @@
     <servlet-name>Segui</servlet-name>
     <url-pattern>/segui</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>MostraEventi</servlet-name>
-    <servlet-class>server.MostraEventi</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MostraEventi</servlet-name>
-    <url-pattern>/mostra</url-pattern>
-  </servlet-mapping>
+ 
   
   
 </web-app>

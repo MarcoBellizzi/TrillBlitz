@@ -35,8 +35,9 @@ public class CreaRichiesta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		
+		response.setContentType("text/html");
 		
 		String creatore = request.getParameter("nome");
 		String locale = request.getParameter("locale");
@@ -72,7 +73,7 @@ public class CreaRichiesta extends HttpServlet {
 				out.println("<div> il musicista "+errato+" non è presente nel sistema <div>");
 			}
 			
-		}
+}
 		
 	}
 

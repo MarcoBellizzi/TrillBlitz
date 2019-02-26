@@ -99,12 +99,32 @@ public class Musicista extends Utente implements Dao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return numero;
 	}
+	
+	
+	public static int getNumberFollowed(String nome) {
+		int numero = 0;
+		
+		try {
+			String select = "select count(*) from segue where utente1 ='" + nome + "'";
+			PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				numero = result.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return numero;
+	}
+	
+	
 
 }
 

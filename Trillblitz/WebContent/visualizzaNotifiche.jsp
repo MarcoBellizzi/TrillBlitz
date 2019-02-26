@@ -3,35 +3,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Visualizza notifiche</title>
+
+	<meta charset="UTF-8">
+	<title>Visualizza notifiche</title>
+	<link rel="stylesheet" href="css/layout.css" type="text/css">
+	<script type="text/javascript" src="js/activeMenu.js"></script>
+
 </head>
 <body>
 
 	<%@ include file="navbar.jsp" %>
 
+	<div class="container-fluid">
 
-	
-		<h2>Ciao <%= nome %> ecco le tue notifiche</h2>
+		<div class="row">
+
+		 	<div class="col-sm-8">
+
+				<h2>Ciao <%= nome %> ecco le tue notifiche</h2>
+
+
+				<%	String select = "select * from notifiche where utente = '" + nome + "'";
+				PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
+				ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					String messaggio = result.getString("notifica");  %>
+
+					<div>Hai una nuova notifica : <%= messaggio %></div>
+
+					<form method=post action="elimina?utente=<%= nome %>&notifica=<%= messaggio %>&tipo=<%= tipo %>">
+						<input type=submit value=Ok>
+					</form>
+
+				<% } %>
+
+			</div>
+
+			<div class="customDiv"> </div>
 			
-	
-<%	String select = "select * from notifiche where utente = '" + nome + "'";
-	PreparedStatement statement = Connessione.getConnection().prepareStatement(select);
-	ResultSet result = statement.executeQuery();
+			<div class="col-sm">
+    				seconda colonna
+    		</div>
 
-	while(result.next()) {
-		String messaggio = result.getString("notifica");  %>
-		
-		<div>Hai una nuova notifica :</div>
-		<div><%= messaggio %></div>
-	
-		<form method=post action="elimina?utente=<%= nome %>&notifica=<%= messaggio %>&tipo=<%= tipo %>">
-			<input type=submit value=ok>
-		</form>
-	
-	<% } %>
-	
-<a  href="home.jsp?parametro=piti" ></a>
+		 </div>
+
+	</div>
 
 </body>
 </html>
