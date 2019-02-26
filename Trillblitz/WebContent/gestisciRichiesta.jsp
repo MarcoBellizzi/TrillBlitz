@@ -15,8 +15,6 @@
 		
 		Richiesta richiesta = Richiesta.find(codice);
 		
-		
-		
 		if(scelta.equals("Si")) {
 			richiesta.accetta();   %>
 			

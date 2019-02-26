@@ -92,5 +92,11 @@ public class Segui extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		Connessione.close();
+	}
 
 }

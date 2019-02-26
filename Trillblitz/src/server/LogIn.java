@@ -17,6 +17,7 @@ import util.Connessione;
  */
 @WebServlet("/LogIn")
 public class LogIn extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -34,8 +35,6 @@ public class LogIn extends HttpServlet {
 
 		String nome = request.getParameter("nome");
 		String password = request.getParameter("password");
-
-		Connessione.initConnection();
 
 		boolean trovato = false;
 		boolean passwordCorretta = false;
@@ -88,6 +87,12 @@ public class LogIn extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		Connessione.close();
 	}
 
 }

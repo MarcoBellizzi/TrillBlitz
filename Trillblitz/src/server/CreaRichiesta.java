@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.Richiesta;
+import util.Connessione;
 
 /**
  * Servlet implementation class CreaRichiesta
@@ -83,4 +84,10 @@ public class CreaRichiesta extends HttpServlet {
 		doGet(request, response);
 	}
 
+	@Override
+	public void destroy() {
+		super.destroy();
+		Connessione.close();
+	}
+	
 }

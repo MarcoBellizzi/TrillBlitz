@@ -57,4 +57,9 @@ public class EliminaNotifica extends HttpServlet {
 		doGet(request, response);
 	}
 
+	@Override
+	public void destroy() {
+		super.destroy();
+		Connessione.close();
+	}
 }

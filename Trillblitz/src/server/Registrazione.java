@@ -38,8 +38,6 @@ public class Registrazione extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 
-		Connessione.initConnection();
-
 		boolean occupato = false;
 		for(Musicista musicista : Musicista.findAll()) {
 			if(musicista.getNome().equals(nome)) {
@@ -90,6 +88,12 @@ public class Registrazione extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		Connessione.close();
 	}
 
 }
