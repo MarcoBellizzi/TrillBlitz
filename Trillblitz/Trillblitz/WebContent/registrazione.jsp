@@ -62,6 +62,8 @@
 					</div>
 					<div>
 						<input type="submit" value="registrati" />
+						
+						
 					</div>
 				</form>
 			</div>

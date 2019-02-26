@@ -17,8 +17,8 @@
 	<%
 		String visitato = request.getParameter("visitato");
 		int follower = Musicista.getNumberFollower(visitato);
+		int followed = Musicista.getNumberFollowed(visitato);
 		String tipoVisitato = "musicista";
-
 		boolean presente = false;
 		for (Musicista musicista : Musicista.findAll()) {
 			if (musicista.getNome().equals(visitato)) {
@@ -51,7 +51,9 @@
 		<div class="row">
 
 
-			<div class="card" style="whidt: 24rem">
+			<div class="card" style="width: 24rem;">
+			
+				<img width="96" height="96" src="svg/si-glyph-music-note.svg"  class="card-img-top">
 
 				<div class="card-body">
 
@@ -72,16 +74,12 @@
 
 						<tr>
 							<td><%=follower%></td>
-							<td>#</td>
+							<td><%=followed%></td>
 						</tr>
 
 					</table>
 
-					<a
-						href="segui?utente1=<%=nome%>&utente2=<%=visitato%>&tipo=<%=tipo%>">Follow</a>
-
-
-
+					<a class="btn btn-dark" href="segui?utente1=<%=nome%>&utente2=<%=visitato%>&tipo=<%=tipo%>">Follow</a>
 
 					<%
 						}
@@ -90,13 +88,15 @@
 				</div>
 
 			</div>
+			
+			<div class="customDiv">
+    		</div>
 
+			<div class="card" style="width: 34rem;">
 
-		</div>
+				<div class="card-body">
 
-
-		<div class="customDiv">
-			<h2>Contenuti</h2>
+					<h2>Contenuti</h2>
 			<h3>Eventi in cui ha partecipato</h3>
 
 			<%
@@ -131,9 +131,13 @@
 				}
 				}
 			%>
+						
+				</div>
 
-
+			</div>
+			
 		</div>
+		
 	</div>
 
 

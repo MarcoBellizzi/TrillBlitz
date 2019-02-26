@@ -27,7 +27,7 @@
   		<div class="row">
 
     		<div class="col-sm-8">
-					Ciao <%= nome %>
+				<h2>Ciao <%= nome %>, Benvenuto nella tua HomePage! </h2>	
     		</div>
 
     		<div class="customDiv">
@@ -35,7 +35,18 @@
 
     		<div class="col-sm">
 
-    				seconda colonna
+    				<h4>Musicisti</h4>
+    				
+    				<%
+    					String utente = "";
+    					for(Musicista musicista : Musicista.findAll()) {
+    						utente = musicista.getNome();
+    				%>
+    					<div><%= utente %></div>
+    				<%
+    						
+    					}
+    				%>
 
     		</div>
   		</div>

@@ -60,13 +60,24 @@
 				<div>
 					<input type="submit" value="crea" />
 				</div>
-			</form>
-
+			</form> 
+ 
 		</div>
 			
 			<div class="col-sm">
 
-    				seconda colonna
+    				<h4>Musicisti</h4>
+    				
+    				<%
+    					String utente = "";
+    					for(Musicista musicista : Musicista.findAll()) {
+    						utente = musicista.getNome();
+    				%>
+    					<div><%= utente %></div>
+    				<%
+    						
+    					}
+    				%>
 
     		</div>
 			
