@@ -7,4 +7,4 @@
 # sulla fiamma per gestire le richieste, sulla lampadina per le notifiche, sull'avatar per 
 # visualizzare la propria pagina e sulla porta per tornare al log in.
 # 
-# Per informazioni più dettagliate visualizzare la relazione in pdf nella cartella build.
+# Per informazioni più dettagliate visualizzare la relazione in pdf nella cartella librerie.
