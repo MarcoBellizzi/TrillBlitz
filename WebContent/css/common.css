@@ -1,0 +1,185 @@
+@charset "ISO-8859-1";
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	margin: 0;
+	padding: 0;
+	height: 1500px;
+	background-image: linear-gradient(180deg, silver, black );
+	backgroud-repeat: no-repeat;
+}
+
+header
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 100px;
+	background: black;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+header .logo
+{
+	float: left;
+}
+
+header nav
+{
+	float: right;
+	height: 60px;
+	background-color: black;
+}
+
+header .logo
+{
+	margin-left: 35%;
+	margin-top: 10px;
+}
+
+header nav
+{
+	float: right;
+	margin-top: 20px;
+}
+
+header nav ul
+{
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+header nav ul li
+{
+	list-style: none;
+}
+
+header nav ul li a
+{
+	height: 50px;
+	padding: 0 20px;
+	color: white;
+}
+
+header nav ul li a:hover
+header nav ul li a.active
+{
+	color: white;
+	background: white;
+}
+
+.menu-toggle
+{
+	color: white;
+	float: right;
+	cursor: pointer;
+	display: none;
+}
+
+@media (max-width: 991px)
+{
+	header
+	{
+		padding: 0 20px;
+	}
+	
+	.menu-toggle
+	{
+		display: block;
+	}
+	
+	header nav
+	{
+		position: absolute;
+		width: 100%;
+		height: auto;
+		background: #333;
+		top: 54px;
+		left: -100%;
+		transition: 0.5s;
+	}
+	
+	header nav.active
+	{
+		left: 0;
+	}
+	
+	header nav ul
+	{
+		display: block;
+		text-align: center;
+	}
+	
+	header nav ul li a
+	{
+		border-bottom: 1px solid rgba(0,0,0,2)
+	}
+}
+
+.search-box
+{
+	margin-left: 20px;
+	margin-top: 20px;
+	float: left;
+	transform: translate(-50%, -50%);
+	background: black;
+	border: none;
+	height: 40px;
+	width: 40px;
+	border-radius: 40px;
+	padding: 10px;
+}
+
+.search-box:hover > .search-txt
+{
+	width: 240px;
+	padding: 0 6px;
+}
+
+
+.search-button
+{
+	margin-top: -20px;
+	color: black;
+	float: left;
+	width: 32px;
+	height: 32px;
+	border: none;
+	border-radius: 50%;
+	background: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-txt
+{
+	margin-top: 20px;
+	margin-left: 30px;
+	background: none;
+	border: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: white;
+	font-size: 16px;
+	transition: 0.4s;
+	width: 0px;
+	
+}
+
+.si-glyph *
+{
+	fill: white;
+}
+
+
+
