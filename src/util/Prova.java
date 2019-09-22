@@ -19,12 +19,12 @@ public class Prova {
 			DriverManager.registerDriver(d);
 			connection = DriverManager.getConnection("jdbc:postgresql://packy.db.elephantsql.com:5432/stzoncea","stzoncea","Bg0au3WOUQHbgcf1oz6-Z7_igoCuEHij");
 			
-			String query = "select * from persona" ;
+			String query = "select * from musicista" ;
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while(result.next()) {
-				System.out.println(result.getString("nome"));;
+				System.out.println(result.getString("nome"));
 			}
 		
 		

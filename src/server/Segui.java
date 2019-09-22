@@ -25,15 +25,13 @@ public class Segui extends HttpServlet {
 	 */
 	public Segui() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
@@ -77,7 +75,6 @@ public class Segui extends HttpServlet {
 			out.println("Clicca <a href=home.jsp?nome="+utente1+"&tipo="+tipo+" >qui</a> per tornare alla home page");
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -89,7 +86,6 @@ public class Segui extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	
